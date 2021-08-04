@@ -9,7 +9,7 @@ const publicKeys = {};
 // Validate the jwt Token with the audience and the issuer
 const verifyJwt = function verifyJwt(jwtToken, publicKey, aud, iss) {
   return new BbPromise(function (resolve, reject) {
-    jwt.verify(jwtToken, publicKey, { algorithms: ['RS256'], audience: aud, issuer: iss, ignoreNotBefore: true },
+    jwt.verify(jwtToken, publicKey, { algorithms: ['RS256'], audience: aud, issuer: iss, ignoreNotBefore: true, clockTolerance: 60 },
       function (error, decoded) {
         if (!error) {
           resolve(decoded);
